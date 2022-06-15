@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+  <kcfgfile name=""/>
+
+  <group name="General">
+    <entry name="appId" type="string"></entry>
+    <entry name="userId" type="string"></entry>
+    <entry name="updateInterval" type="int">
+      <default>10</default>
+    </entry>
+    <entry name="itemsDownloadLimit" type="int">
+      <default>20</default>
+    </entry>
+    <entry name="autoRead" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="unreadCount" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="unreadCountHighlight" type="bool">
+      <default>false</default>
+    </entry>
+    <entry name="viewStyle" type="string">
+      <default>List</default>
+    </entry>
+    <entry name="fetchUnreadOnly" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="plasmoidHeightFull" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="plasmoidHeight" type="int">
+      <default>850</default>
+    </entry>
+    <entry name="plasmoidWidth" type="int">
+      <default>480</default>
+    </entry>
+    <entry name="streamViewFixedColumns" type="int">
+      <default>0</default>
+    </entry>
+    <entry name="articleTextSize" type="int">
+      <default>10</default>
+    </entry>
+    <entry name="articleImages" type="bool">
+      <default>true</default>
+    </entry>
+  </group>
+</kcfg>
