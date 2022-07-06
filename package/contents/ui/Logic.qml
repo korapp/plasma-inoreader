@@ -61,11 +61,6 @@ QtObject {
         onTriggered: setArticleStarred(source.actionTarget, !source.actionTarget.starred)
     }
 
-    readonly property Action fetchStreamAction: Action {
-        text: i18n("New articles")
-        onTriggered: fetchStream()
-    }
-
     readonly property Action fetchStreamContinuationAction: Action {
         text: i18n("More…")
         onTriggered: fetchStreamContinuation()

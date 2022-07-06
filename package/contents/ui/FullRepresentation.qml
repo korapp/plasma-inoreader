@@ -59,7 +59,7 @@ PlasmaExtras.Representation {
                     PropertyChanges {
                         target: placeholderMessage
                         visible: true
-                        text: i18n("Loading")
+                        text: i18n("Loading…")
                     },
                     PropertyChanges {
                         target: busyIndicator

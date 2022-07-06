@@ -22,8 +22,8 @@ FocusScope {
     Component {
         id: newArticlesButton
         PlasmaComponents3.Button {
-            action: logic.fetchStreamAction
-            text: action.text + ` (${stream.unreadNewCount})`
+            text: i18np("1 new article", "%1 new articles", stream.unreadNewCount)
+            onClicked: logic.fetchStream()
             flat: true
             width: parent.width
         }
