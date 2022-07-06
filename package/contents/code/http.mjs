@@ -59,7 +59,16 @@ export function fetch(url, { method = 'GET', headers, body = "" } = {}) {
 }
 
 export function urlParams(params = {}) {
-    return Object.entries(params).map(entry => entry.map(encodeURIComponent).join("=")).join("&")
+    return Object.entries(params)
+        .reduce((str, [key, value], i) => {
+            if (i) str += "&"
+            if (Array.isArray(value)) {
+                str += value.map(v => key + '=' + encodeURIComponent(v)).join("&")
+            } else {
+                str += encodeURIComponent(key) + '=' + encodeURIComponent(value)
+            }
+            return str
+        },'')
 }
 
 export function jsonResponse({ response }) {
