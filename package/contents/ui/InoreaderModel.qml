@@ -24,6 +24,7 @@ BaseObject {
         onFetchStreamContinuation: _.callPending(_.fetchMore, 'fetchStreamContinuation')
 
         onSetArticleRead: _.setArticleRead(article, read)
+        onSetAllArticlesRead: _.setAllArticlesRead(read)
         onSetArticleStarred: _.setArticleStarred(article, starred)
     }
 
@@ -66,6 +67,12 @@ BaseObject {
                         _.unreadCount += read ? -1 : 1
                     }
                 })
+        }
+
+        function setAllArticlesRead(read) {
+            return inoreader
+                .editTag(inoreader.systemTags.read, inoreader.tagAction.add, map(_.articles, a => a.id))
+                .then(() => forEach(_.articles, a => a.read = read))
         }
 
         function setArticleStarred(article, starred) {
@@ -111,6 +118,20 @@ BaseObject {
 
         function kNumber(num) {
             return num < 1e3 ? num : ((num / 1e3) | 0) + 'k'
+        }
+
+        function forEach(model, fn) {
+            for(let i = 0; i < model.count; i++) {
+                fn(model.get(i))
+            }
+        }
+
+        function map(model, fn) {
+            const arr = new Array()
+            for(let i = 0; i < model.count; i++) {
+                arr.push(fn(model.get(i)))
+            }
+            return arr
         }
     }
 }

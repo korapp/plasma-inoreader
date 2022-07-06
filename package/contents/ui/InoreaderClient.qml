@@ -58,7 +58,7 @@ BaseObject {
     function editTag(tag, action, id) {
         const params = {
             [action]: tag,
-            i: shortenId(id)
+            i: Array.isArray(id) ? id.map(shortenId) : shortenId(id)
         }
         return httpClient.post("/edit-tag", { params })
     }

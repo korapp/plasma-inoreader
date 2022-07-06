@@ -54,6 +54,9 @@ FocusScope {
             Layout.fillWidth: true
         }
         ToolButton {
+            action: logic.readAllAction
+        }
+        ToolButton {
             action: logic.reloadAction
         }
     }

@@ -9,6 +9,7 @@ QtObject {
     signal fetchStream()
     signal fetchStreamContinuation()
 
+    signal setAllArticlesRead(bool read)
     signal setArticleRead(var article, bool read)
     signal setArticleStarred(var article, bool starred)
 
@@ -46,6 +47,12 @@ QtObject {
         shortcut: "M"
         onTriggered: setArticleRead(source.actionTarget, !source.actionTarget.read)
     }
+   
+    readonly property Action readAllAction: Action {
+        icon.name: "checkbox"
+        text: i18n("Read all")
+        onTriggered: setAllArticlesRead(true)
+    } 
 
     readonly property Action starAction: Action {
         readonly property var icons: ({ false: "non-starred-symbolic", true: "starred-symbolic" })
