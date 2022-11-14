@@ -65,25 +65,26 @@ PlasmaComponents3.ScrollView {
             width: parent.width
         }
         
-        Paragraph {
-            textFormat: Text.RichText
-            onLinkActivated: Qt.openUrlExternally(link)
-            onLinkHovered: mouseArea.cursorShape = link ? Qt.PointingHandCursor : Qt.ArrowCursor
-            text: { 
-                // force one time binding
-                text = showImages
-                    ? Html.adjustImages(entry.summary, width)
-                    : Html.removeImages(entry.summary)
-            }
+        MouseArea {
+            width: parent.width
+            height: p.height
+            
+            Paragraph {
+                id: p
+                textFormat: Text.RichText
+                onLinkActivated: Qt.openUrlExternally(link)
+                onLinkHovered: parent.cursorShape = link ? Qt.PointingHandCursor : Qt.ArrowCursor
+                text: { 
+                    // force one time binding
+                    text = showImages
+                        ? Html.adjustImages(entry.summary, width)
+                        : Html.removeImages(entry.summary)
+                }
 
-            Binding on font.pointSize {
-                when:  !!textSize
-                value: textSize
-            }
-
-            MouseArea {
-                id: mouseArea
-                anchors.fill: parent
+                Binding on font.pointSize {
+                    when:  !!textSize
+                    value: textSize
+                }
             }
         }
     }
