@@ -9,6 +9,8 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 PlasmaExtras.Representation {
     id: full
     header: stack.currentItem.header
+
+    readonly property var appletInterface: plasmoid.self
     
     readonly property int plasmoidHeight: plasmoid.configuration.plasmoidHeightFull
         ? plasmoid.availableScreenRect.height
