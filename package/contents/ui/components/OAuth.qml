@@ -99,8 +99,8 @@ QtObject {
     function webWindow() {
         return Qt.createQmlObject(`
             WebWindow {
-                width: 640
-                height: 500
+                width: 950
+                height: 650
                 title: plasmoid.title
             }`, auth)
     }
