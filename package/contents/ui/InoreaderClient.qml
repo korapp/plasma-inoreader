@@ -17,9 +17,11 @@ BaseObject {
             return req
         })
         httpClient.middleware.response.push(Http.jsonResponse)
-        httpClient.middleware.error.push(({ request, response }) => {            
-            if (response.status == 401 || response.status == 403) {
-                return authService.refreshToken().then(() => httpClient.request(request))
+        httpClient.middleware.error.push(({ request, response }) => {
+            if (response.status === 401 || response.status === 403) {
+                return authService.refreshToken()
+                    .then(() => httpClient.request(request))
+                    .catch(e => e.status === 400 && authService.logout())
             }
             throw { request, response }
         })
