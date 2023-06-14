@@ -16,6 +16,8 @@ BaseObject {
     readonly property int unreadCount: Math.max(_.unreadCount, 0)
     readonly property string unreadCountFormatted: _.kNumber(unreadCount) + (_.unreadMaxReached ? "+" : "")
 
+    signal reloaded()
+
     Connections {
         target: dispatcher
 
@@ -25,6 +27,7 @@ BaseObject {
 
         onSetArticleRead: _.setArticleRead(article, read)
         onSetAllArticlesRead: _.setAllArticlesRead(read)
+        onSetAllArticlesReadAndFetch: _.callPending(() => _.setAllArticlesRead(read).then(_.loadData), 'fetchStream')
         onSetArticleStarred: _.setArticleStarred(article, starred)
     }
 
@@ -110,6 +113,7 @@ BaseObject {
                 
                 if (!continuation) {
                     _.articles.clear()
+                    reloaded()
                 }
                 _.articles.append(stream.items)
                 _.unreadNewCount = 0
