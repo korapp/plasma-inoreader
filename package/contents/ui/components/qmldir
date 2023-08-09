@@ -1,8 +1,6 @@
 Badge 1.0 Badge.qml
 BaseObject 1.0 BaseObject.qml
-Exec 1.0 Exec.qml
 OAuth 1.0 OAuth.qml
 Paragraph 1.0 Paragraph.qml
 ToolButton 1.0 ToolButton.qml
-Wallet 1.0 Wallet.qml
 WebWindow 1.0 WebWindow.qml

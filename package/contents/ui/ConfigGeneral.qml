@@ -3,6 +3,8 @@ import QtQuick.Controls 2.0
 
 import org.kde.kirigami 2.3 as Kirigami
 
+import "../lib/secrets"
+
 Kirigami.FormLayout {
 
     property alias cfg_appId: appId.text
@@ -27,6 +29,7 @@ Kirigami.FormLayout {
 
     Secrets {
         id: secrets
+        appId: "Inoreader"
         onReady: getAppKey()
         
         function getAppKey() {

@@ -1,4 +1,4 @@
-# Innoreader Plasmoid
+# Inoreader Plasmoid
 
 Plasma applet for [Inoreader](https://innoreader.com).
 
@@ -46,7 +46,7 @@ plasmapkg2 -i plasma-inoreader-*.plasmoid
 Clone repository and go to the project directory
 
 ```sh
-git clone https://github.com/korapp/plasma-inoreader.git
+git clone --recurse-submodules https://github.com/korapp/plasma-inoreader.git
 cd plasma-inoreader
 ```
 
