@@ -25,7 +25,7 @@ FocusScope {
             text: i18np("1 new article", "%1 new articles", stream.unreadNewCount)
             onClicked: logic.fetchStream()
             flat: true
-            width: parent.width
+            width: listView.width
         }
     }
 
@@ -34,7 +34,7 @@ FocusScope {
         PlasmaComponents3.Button {
             action: logic.fetchStreamContinuationAction
             flat: true
-            width: parent.width
+            width: listView.width
             enabled: !stream.isPending("fetchStreamContinuation")
 
             indicator: PlasmaComponents3.ProgressBar {
