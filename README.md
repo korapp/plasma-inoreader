@@ -1,5 +1,9 @@
 # Inoreader Plasmoid
 
+[![plasma](https://img.shields.io/static/v1?message=KDE%20Store&color=54a3d8&logo=kde&logoColor=FFFFFF&label=)][kdestore]
+[![downloads](https://img.shields.io/github/downloads/korapp/plasma-inoreader/total)][releases]
+[![release](https://img.shields.io/github/v/release/korapp/plasma-inoreader)][releases]
+
 Plasma applet for [Inoreader](https://innoreader.com).
 
 ![Plasmoid full view](preview.jpg)
@@ -27,7 +31,7 @@ The preferred and easiest way to install is to use Plasma Discover or KDE Get Ne
 
 ### From file
 
-Download the latest version of plasmoid from [KDE Store](https://store.kde.org/p/1829436/) or [release page](https://github.com/korapp/plasma-inoreader/releases)
+Download the latest version of plasmoid from [KDE Store][kdestore] or [release page][releases]
 
 #### A) Plasma UI
 
@@ -63,3 +67,6 @@ Say thank you with coffee ☕ if you'd like.
 [![liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/korapp/donate)
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/korapp)
 [<img src="https://img.shields.io/badge/Revolut-white?logo=Revolut&logoColor=black" height="30"/>](https://revolut.me/korapp)
+
+[kdestore]: https://store.kde.org/p/1829436/
+[releases]: https://github.com/korapp/plasma-inoreader/releases
