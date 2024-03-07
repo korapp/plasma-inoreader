@@ -54,7 +54,7 @@ FocusScope {
             Layout.fillWidth: true
         }
         ToolButton {
-            action: logic.readAllAction
+            action: plasmoid.configuration.readAndFetch ? logic.readAllAndFetchAction : logic.readAllAction
         }
         ToolButton {
             action: logic.reloadAction
@@ -99,6 +99,10 @@ FocusScope {
                     anchors.fill: parent
                 }
                 property bool isCurrentItem: GridView.isCurrentItem
+            }
+            Connections {
+                target: stream
+                onReloaded: Qt.callLater(listView.positionViewAtBeginning)
             }
         }
     }

@@ -12,6 +12,7 @@ Kirigami.FormLayout {
     property alias cfg_itemsDownloadLimit: itemsDownloadLimit.value
     property alias cfg_autoRead: autoRead.checked
     property alias cfg_fetchUnreadOnly: fetchUnreadOnly.checked
+    property alias cfg_readAndFetch: readAndFetch.checked
 
     signal configurationChanged
 
@@ -76,6 +77,11 @@ Kirigami.FormLayout {
     CheckBox {
         id: fetchUnreadOnly
         Kirigami.FormData.label: i18n("Fetch unread only")
+    }
+
+    CheckBox {
+        id: readAndFetch
+        Kirigami.FormData.label: i18n("Fetch articles after 'Read all'")
     }
 
     CheckBox {
