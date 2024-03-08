@@ -4,6 +4,7 @@ import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 
 import "components"
+import "../lib/secrets"
 
 Item {
     id: root
@@ -81,8 +82,9 @@ Item {
 
     Secrets {
         id: secrets
+        appId: "Inoreader"
         property bool pending: true 
-        readonly property string tokenKey: (userId && appId) ? userId + "@" + appId : ""
+        readonly property string tokenKey: (userId && root.appId) ? userId + "@" + root.appId : ""
 
         function stopPending() {
             pending = false
@@ -90,8 +92,8 @@ Item {
 
         function restore() {
             const promises = []
-            if (appId) {
-                promises.push(get(appId).then(key => auth.clientSecret = key))
+            if (root.appId) {
+                promises.push(get(root.appId).then(key => auth.clientSecret = key))
             }
             if (tokenKey) {
                 promises.push(get(tokenKey).then(token => {
@@ -104,7 +106,7 @@ Item {
         }
 
         function init() {
-            if (appId) {
+            if (root.appId) {
                 return restore()
             }
             const isUserEntry = e => e.includes("@")

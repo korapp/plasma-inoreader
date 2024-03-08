@@ -29,6 +29,9 @@
     <entry name="fetchUnreadOnly" type="bool">
       <default>true</default>
     </entry>
+    <entry name="readAndFetch" type="bool">
+      <default>false</default>
+    </entry>
     <entry name="plasmoidHeightFull" type="bool">
       <default>true</default>
     </entry>

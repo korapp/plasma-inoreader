@@ -25,7 +25,7 @@ FocusScope {
             text: i18np("1 new article", "%1 new articles", stream.unreadNewCount)
             onClicked: logic.fetchStream()
             flat: true
-            width: parent.width
+            width: listView.width
         }
     }
 
@@ -34,7 +34,7 @@ FocusScope {
         PlasmaComponents3.Button {
             action: logic.fetchStreamContinuationAction
             flat: true
-            width: parent.width
+            width: listView.width
             enabled: !stream.isPending("fetchStreamContinuation")
 
             indicator: PlasmaComponents3.ProgressBar {
@@ -54,7 +54,7 @@ FocusScope {
             Layout.fillWidth: true
         }
         ToolButton {
-            action: logic.readAllAction
+            action: plasmoid.configuration.readAndFetch ? logic.readAllAndFetchAction : logic.readAllAction
         }
         ToolButton {
             action: logic.reloadAction
@@ -64,34 +64,6 @@ FocusScope {
     PlasmaComponents3.ScrollView {
         anchors.fill: parent
         focus: true
-        
-        /*ListView {
-            id: listView
-            currentIndex: -1
-            clip: true
-            focus: true
-            model: stream.articles
-            spacing: PlasmaCore.Units.smallSpacing
-            boundsBehavior: Flickable.StopAtBounds
-            highlight: PlasmaComponents.Highlight {}
-            highlightMoveDuration: PlasmaCore.Units.shortDuration
-            header: stream.unreadNewCount ? newArticlesButton : null
-            footer: stream.hasContinuation ? fetchMoreButton : null
-            delegate: PlasmaComponents.ListItem {
-                id: wrapper
-                width: ListView.view.width
-                enabled: true
-                opacity: model.read ? 0.6 : 1
-                onContainsMouseChanged: listView.currentIndex = index
-                onClicked: selected(model)
-                Keys.onReturnPressed: clicked()
-                content: Loader {
-                    source: `ItemDelegate${plasmoid.configuration.viewStyle}.qml`
-                    width: parent.width
-                }
-                property bool isCurrentItem: ListView.isCurrentItem
-            }
-        }*/
 
         GridView {
             readonly property var cellSizes: viewMinSizeMap[plasmoid.configuration.viewStyle]
@@ -127,6 +99,10 @@ FocusScope {
                     anchors.fill: parent
                 }
                 property bool isCurrentItem: GridView.isCurrentItem
+            }
+            Connections {
+                target: stream
+                onReloaded: Qt.callLater(listView.positionViewAtBeginning)
             }
         }
     }

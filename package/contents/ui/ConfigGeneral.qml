@@ -3,6 +3,8 @@ import QtQuick.Controls 2.0
 
 import org.kde.kirigami 2.3 as Kirigami
 
+import "../lib/secrets"
+
 Kirigami.FormLayout {
 
     property alias cfg_appId: appId.text
@@ -10,6 +12,9 @@ Kirigami.FormLayout {
     property alias cfg_itemsDownloadLimit: itemsDownloadLimit.value
     property alias cfg_autoRead: autoRead.checked
     property alias cfg_fetchUnreadOnly: fetchUnreadOnly.checked
+    property alias cfg_readAndFetch: readAndFetch.checked
+
+    signal configurationChanged
 
     Item {
         Kirigami.FormData.isSection: true
@@ -27,23 +32,27 @@ Kirigami.FormLayout {
 
     Secrets {
         id: secrets
+        appId: "Inoreader"
         onReady: getAppKey()
+
+        property string appKey
         
         function getAppKey() {
-            return get(appId.text).then(r => appKey.text = r)
+            return get(appId.text).then(r => this.appKey = r)
         }
     }
 
     TextField {
         id: appId
         validator: IntValidator {}
-        onEditingFinished: secrets.getAppKey(appId.text)
+        onEditingFinished: secrets.getAppKey()
         Kirigami.FormData.label: i18n("App id")
     }
 
     TextField {
         id: appKey
-        onEditingFinished: secrets.set(appId.text, text)
+        text: secrets.appKey
+        onTextChanged: text !== secrets.appKey && configurationChanged()
         Kirigami.FormData.label: i18n("App key")
     }
 
@@ -71,8 +80,17 @@ Kirigami.FormLayout {
     }
 
     CheckBox {
+        id: readAndFetch
+        Kirigami.FormData.label: i18n("Fetch articles after 'Read all'")
+    }
+
+    CheckBox {
         id: autoRead
         Kirigami.FormData.label: i18n("Automatically mark an article as read")
+    }
+
+    function saveConfig() {
+        secrets.set(appId.text, appKey.text)
     }
 
 }
